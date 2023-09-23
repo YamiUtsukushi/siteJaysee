@@ -24,13 +24,13 @@ class Utilisateur
     #[ORM\Column]
     private array $roles = [];
 
-    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Review::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Review::class, orphanRemoval: false)]
     private Collection $reviews;
 
-    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Order::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Order::class, orphanRemoval: false)]
     private Collection $orders;
 
-    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Comment::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Comment::class, orphanRemoval: false)]
     private Collection $comments;
 
     public function __construct()

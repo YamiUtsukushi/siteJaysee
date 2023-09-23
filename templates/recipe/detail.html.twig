@@ -1,0 +1,13 @@
+{# templates/recipe/detail.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ recipe.title }}{% endblock %}
+
+{% block body %}
+<div class="recipe-detail">
+    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+    <h1>{{ recipe.title }}</h1>
+    <p>{{ recipe.description }}</p>
+</div>
+{% endblock %}

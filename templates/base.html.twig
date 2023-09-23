@@ -9,8 +9,43 @@
 
         {% block javascripts %}
         {% endblock %}
+
+        <style>
+
+    header {
+        display: flex;
+        justify-content: center;
+        padding: 10px 20px;
+        background-color: #f5f5f5;
+    }
+
+    footer {
+        margin-top: 20px;
+        background-color: #f5f5f5;
+        padding: 10px 20px;
+    }
+</style>
     </head>
+    
+
     <body>
+        <header>
+            <div>
+                <img src="path_to_logo.png" alt="Logo" id="logo">
+                <input type="search" placeholder="Recherche...">
+                <span>🛒</span> <!-- Icône de panier -->
+                <a href="path_to_login">Connexion</a>/<a href="path_to_register">Inscription</a>
+            </div>
+        </header>
+
         {% block body %}{% endblock %}
+
+        <footer>
+            <div>
+                <a href="path_to_about">À propos</a>
+                <a href="path_to_contact">Contact</a>
+                <!-- Ajoutez d'autres liens si nécessaire -->
+            </div>
+        </footer>
     </body>
 </html>

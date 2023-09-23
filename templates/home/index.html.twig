@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+
+<style>
+
+    .categories {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+</style>
+
+<section class="slideshow">
+    <!-- Vous pouvez utiliser un plugin comme Slick ou OwlCarousel pour créer un slideshow ici -->
+    <img src="image1.jpg" alt="Promo 1">
+    <img src="image2.jpg" alt="Promo 2">
+</section>
+
+<section class="categories">
+    {% for category in categories %}
+        <div>{{ category }}</div>
+    {% endfor %}
+</section>
+
+
+
+
+{% endblock %}

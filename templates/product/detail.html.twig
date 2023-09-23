@@ -1,0 +1,32 @@
+{# templates/product/detail.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+<div class="product-detail">
+    <img src="{{ product.image }}" alt="{{ product.name }}" class="product-image">
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.description }}</p>
+    <strong>{{ product.price }} €</strong>
+
+    <form action="{{ path('add_to_cart', {'productId': product.id}) }}" method="post">
+        {# Pour les options de personnalisation, utilisez un formulaire Symfony ou créez les champs manuellement #}
+        <button type="submit">Ajouter au panier</button>
+    </form>
+
+    <section class="product-reviews">
+        <h2>Avis</h2>
+        {% for review in product.reviews %}
+            <div class="review">
+                <strong>Note : {{ review.rating }}/5</strong>
+                <p>{{ review.comment }}</p>
+                <small>Par {{ review.user.email }}</small>
+            </div>
+        {% endfor %}
+
+        {# Ici, ajoutez un formulaire pour permettre à l'utilisateur de soumettre un avis #}
+    </section>
+</div>
+{% endblock %}

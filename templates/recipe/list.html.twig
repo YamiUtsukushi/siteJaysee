@@ -1,0 +1,18 @@
+{# templates/recipe/list.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}List of Recipes{% endblock %}
+
+{% block body %}
+<div class="recipes-list">
+    {% for recipe in recipes %}
+    <div class="recipe-item">
+        <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+        <h3>{{ recipe.title }}</h3>
+        <p>{{ recipe.description|length > 100 ? recipe.description|slice(0, 100) ~ '...' : recipe.description }}</p>
+        <a href="{{ path('app_recipe_detail', {'id': recipe.id}) }}">See Details</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

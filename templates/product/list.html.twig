@@ -1,0 +1,22 @@
+{# templates/product/list.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+    <h1>Liste des produits</h1>
+
+    <ul>
+        {% for product in products %}
+            <li>
+                <h2>{{ product.name }}</h2>
+                <img src="{{ product.image }}" alt="{{ product.name }}" width="150">
+                <p>{{ product.description }}</p>
+                <p>Prix: {{ product.price }} €</p>
+            </li>
+        {% else %}
+            <li>Aucun produit trouvé.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
