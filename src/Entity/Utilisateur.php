@@ -6,9 +6,14 @@ use App\Repository\UtilisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
+
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-class Utilisateur
+class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -71,7 +76,12 @@ class Utilisateur
 
     public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        
+        // Assurez-vous qu'il y a toujours au moins un rôle
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
     public function setRoles(array $roles): static
@@ -79,6 +89,33 @@ class Utilisateur
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->email;
+    }
+
+    public function getSalt(): ?string
+    {
+        // Avec bcrypt ou argon2i/argon2id, vous n'avez pas besoin de sel.
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+        // Supprimez ici tout attribut sensible
+        // $this->plainPassword = null;
+    }
+
+    /**
+     * Returns the identifier for this user (e.g. its username or e-mail address)
+     * 
+     * @return string The user identifier
+     */
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
     }
 
     /**

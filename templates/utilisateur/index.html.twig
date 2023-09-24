@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil de {{ user.email }}{% endblock %}
+
+{% block body %}
+<div>
+    <h2>Profil utilisateur</h2>
+    <p>Email: {{ user.email }}</p>
+    <p>Rôle: {{ user.roles|join(', ') }}</p>
+</div>
+
+<div>
+    <h2>Historique des commandes</h2>
+    <ul>
+        {% for order in orders %}
+            <li>Commande #{{ order.id }} - Status: {{ order.status }} - Prix total: {{ order.totalPrice }}€</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div>
+    <h2>Avis laissés</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                Produit: {{ review.product.name }} - Note: {{ review.rating }}/5
+                <br>
+                Commentaire: {{ review.comment }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
